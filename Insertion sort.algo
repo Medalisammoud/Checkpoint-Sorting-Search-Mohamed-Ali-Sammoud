@@ -1,52 +1,37 @@
-
-
-// procedure swap 
-PROCEDURE swap(VAR xp, VAR yp : INTEGER)
-VAR
-   tmp : INTEGER;
-BEGIN
-  tmp := xp;
-  xp := yp;
-  yp := tmp;
-END
-// procedure Bubble sort 
-PROCEDURE bubble_sort(VAR tab : ARRAY_OF INTEGER)
-VAR
-   i,j,n : INTEGER;
-BEGIN
-   n := tab.length;
-   FOR i FROM 0 TO n-2 STEP 1  DO
-       // Last i elements are already in place
-       FOR j  FROM 0  TO n-i-2 STEP 1  DO
-           IF (tab[j]>tab[j+1]) THEN
-               swap(tab[j], tab[j+1])
-           END_IF
-       END_FOR
-   END_FOR
-END
-
 // procedure read table 
 PROCEDURE enter_array(var arr : ARRAY_OF INTEGER; n : INTEGER)
 VAR
     i:INTEGER;
 BEGIN
-// read list of tables
+// read of tables
         FOR i FROM 0 TO n-1 STEP 1  DO
             write("Enter Element of Table :");
             read(arr[i]);
-            bubble_sort(arr);
         END_FOR
 END
 
 // algorithm of insertion sort  
 ALGORITHM insertion_sort
 VAR
-    arr:ARRAY_OF INTEGER[50];
-    n:INTEGER;
+    arr:ARRAY_OF INTEGER[];
+    n,i,j,temp,count:INTEGER;
 BEGIN
     REPEAT
         write("Length of table :");
         read(n);
     UNTIL ((n > 0)AND(n < 50))
+    n := tab.length;
     enter_array(arr,n);
+   FOR i FROM 1 TO n-1 STEP 1  DO
+       // Last i elements are already in place
+       count:=0;
+       temp:=tab[i];
+      FOR j FROM i-1 TO 0 STEP -1 DO
+           IF (tab[j]<temp) THEN
+               tab[j+1]:=tab[j];
+               count:=j;
+           END_IF
+      END_FOR
+    tab[count]:=temp;
+   END_FOR
 END
